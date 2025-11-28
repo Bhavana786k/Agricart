@@ -1,0 +1,26 @@
+.container {
+    background-image: url('./assets/backround.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 120vh;
+    min-width: 220vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.custom-card {
+    background-image: url('./assets/backround.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+   
+    min-height: 120vh;
+    
+    min-width: 220vh;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center
+    
+}

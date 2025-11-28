@@ -1,0 +1,49 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: agricart-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: agricart
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -uroot -proot --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 30s
+    # ports:
+    #   - "3307:3306"
+
+  backend:
+    build:
+      context: ./playForYou-backend
+      dockerfile: dockerfile
+    container_name: agricart-backend
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      SERVER_PORT: 8081
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/agricart?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    ports:
+      - "9081:8081"
+    restart: unless-stopped
+    
+  frontend:
+    build:
+      context: ./playForYou-frontend
+      dockerfile: dockerfile
+    container_name: agricart-frontend
+    depends_on:
+      - backend
+    ports:
+      - "3030:80"
+    restart: unless-stopped
+
+
+volumes:
+  mysql_data: {}

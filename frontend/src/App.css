@@ -1,0 +1,14 @@
+/* custom.css */
+.font-roboto {
+    font-family: 'Roboto', sans-serif;
+}
+
+.font-montserrat {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.royal-text {
+    font-family: 'YourRoyalFont', sans-serif;
+    /* Replace 'YourRoyalFont' with your royal font name */
+    color: rgb(5, 5, 5);
+}
